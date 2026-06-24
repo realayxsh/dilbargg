@@ -1,16 +1,17 @@
 [Unit]
-Description=Hui Discord Bot
-After=network.target
+  Description=Hui Discord Bot
+  After=network.target
 
-[Service]
-Type=simple
-User=ubuntu
-WorkingDirectory=/home/ubuntu/dilbargg
-ExecStart=/usr/bin/python3 main.py
-Restart=always
-RestartSec=10
-Environment=PYTHONUNBUFFERED=1
-EnvironmentFile=/home/ubuntu/dilbargg/.env
+  [Service]
+  Type=simple
+  User=ubuntu
+  WorkingDirectory=/home/ubuntu/dilbargg/Hui-1
+  ExecStart=/usr/bin/python3 main.py
+  Restart=always
+  RestartSec=10
+  Environment=PYTHONUNBUFFERED=1
+  EnvironmentFile=/home/ubuntu/dilbargg/Hui-1/.env
 
-[Install]
-WantedBy=multi-user.target
+  [Install]
+  WantedBy=multi-user.target
+  
