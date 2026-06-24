@@ -5,12 +5,12 @@ After=network.target
 [Service]
 Type=simple
 User=ubuntu
-WorkingDirectory=/home/ubuntu/Hui-1
+WorkingDirectory=/home/ubuntu/dilbargg
 ExecStart=/usr/bin/python3 main.py
 Restart=always
 RestartSec=10
 Environment=PYTHONUNBUFFERED=1
-EnvironmentFile=/home/ubuntu/Hui-1/.env
+EnvironmentFile=/home/ubuntu/dilbargg/.env
 
 [Install]
 WantedBy=multi-user.target

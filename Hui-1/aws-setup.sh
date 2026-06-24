@@ -10,21 +10,19 @@ sudo apt-get update -y && sudo apt-get upgrade -y
 echo "=== Installing Python 3.11, pip, git, ffmpeg ==="
 sudo apt-get install -y python3.11 python3.11-venv python3-pip git ffmpeg
 
-echo "=== Cloning your bot (edit the URL below to your repo) ==="
-# Replace the URL below with your GitHub repo URL
-# git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git ~/Hui-1
-# OR if you're uploading files manually, just copy them to ~/Hui-1
+echo "=== Cloning your bot ==="
+git clone https://github.com/realayxsh/dilbargg.git ~/dilbargg
 
 echo "=== Installing Python dependencies ==="
-cd ~/Hui-1
+cd ~/dilbargg
 pip3 install -r requirements.txt
 
 echo "=== Setting up environment file ==="
 if [ ! -f .env ]; then
     cp .env.example .env
     echo ""
-    echo ">>> IMPORTANT: Edit ~/Hui-1/.env and set your TOKEN:"
-    echo "    nano ~/Hui-1/.env"
+    echo ">>> IMPORTANT: Edit ~/dilbargg/.env and set your TOKEN:"
+    echo "    nano ~/dilbargg/.env"
     echo ""
 fi
 
@@ -40,3 +38,6 @@ echo "Check bot status : sudo systemctl status hui-bot"
 echo "View live logs   : sudo journalctl -u hui-bot -f"
 echo "Restart bot      : sudo systemctl restart hui-bot"
 echo "Stop bot         : sudo systemctl stop hui-bot"
+echo ""
+echo "To update the bot later:"
+echo "  cd ~/dilbargg && git pull && sudo systemctl restart hui-bot"
