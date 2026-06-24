@@ -59,7 +59,7 @@ class antipinginv(Cog):
                     view.add_item(button)
                     view.add_item(button1)
                     await send_v2(message.channel,
-                        f"Hey! I'm **Dilbar <3**\n\nUse `-help` for a list of commands.",
+                        f"Hey! I'm **Dilbar Support**\n\nUse `-help` for a list of commands.",
                         view=view)
                 else:
                     return

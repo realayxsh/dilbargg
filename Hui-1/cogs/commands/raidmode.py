@@ -23,7 +23,7 @@ class Automod(Cog):
         data = getConfig(ctx.guild.id)
         spam = data["antiSpam"]
         link = data["antiLink"]
-        embed = discord.Embed(title="Dilbar <3 | Automod Commands",
+        embed = discord.Embed(title="Dilbar Support | Automod Commands",
                               color=0x2f3136)
         embed.add_field(
             name="<:dot_white:1103476115709890682> antispam on/off",
@@ -86,7 +86,7 @@ class Automod(Cog):
         else:
             hacker5 = discord.Embed(
                 color=0x2f3136,
-                title="Dilbar <3",
+                title="Dilbar Support",
                 description=
                 f"<a:red_cross:1103371611983327322> | Only owner of the server can run this command"
             )

@@ -15,12 +15,12 @@ class Server(commands.Cog):
     async def add_role(self, *, role: int, member: discord.Member):
         if member.guild.me.guild_permissions.manage_roles:
             role = discord.Object(id=int(role))
-            await member.add_roles(role, reason="Dilbar <3 | Role Added ")
+            await member.add_roles(role, reason="Dilbar Support | Role Added ")
 
     async def remove_role(self, *, role: int, member: discord.Member):
         if member.guild.me.guild_permissions.manage_roles:
             role = discord.Object(id=int(role))
-            await member.remove_roles(role, reason="Dilbar <3 | Role Removed")
+            await member.remove_roles(role, reason="Dilbar Support | Role Removed")
 
     @commands.command(name="owner",
                       description="Gives the owner role to the user .",
@@ -1230,7 +1230,7 @@ class Server(commands.Cog):
                 numbers.append(autoresponsecount)
             if len(numbers) >= 20:
                 hacker6 = discord.Embed(
-                    title="Dilbar <3",
+                    title="Dilbar Support",
                     description=
                     f"<a:red_cross:1103371611983327322> You can\'t add more than 20 autoresponses in {ctx.guild.name}",
                     color=0x2f3136)
@@ -1241,7 +1241,7 @@ class Server(commands.Cog):
         if str(ctx.guild.id) in autoresponse:
             if name in autoresponse[str(ctx.guild.id)]:
                 hacker = discord.Embed(
-                    title="Dilbar <3",
+                    title="Dilbar Support",
                     description=
                     f"<a:red_cross:1103371611983327322> The autoresponse with the `{name}` is already in {ctx.guild.name}",
                     color=0x2f3136)
@@ -1254,7 +1254,7 @@ class Server(commands.Cog):
             with open("autoresponse.json", "w") as f:
                 json.dump(autoresponse, f, indent=4)
             hacker1 = discord.Embed(
-                title="Dilbar <3",
+                title="Dilbar Support",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Created Autoresponder in {ctx.guild.name} with the `{name}`",
                 color=0x2f3136)
@@ -1271,7 +1271,7 @@ class Server(commands.Cog):
         with open("autoresponse.json", "w") as f:
             json.dump(autoresponse, f, indent=4)
             hacker2 = discord.Embed(
-                title="Dilbar <3",
+                title="Dilbar Support",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Created Autoresponder  in {ctx.guild.name} with the `{name}`",
                 color=0x2f3136)
@@ -1294,7 +1294,7 @@ class Server(commands.Cog):
                 with open("autoresponse.json", "w") as f:
                     json.dump(autoresponse, f, indent=4)
                 hacker1 = discord.Embed(
-                    title="Dilbar <3",
+                    title="Dilbar Support",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Deleted Autoresponder in {ctx.guild.name} with the `{name}`",
                     color=0x2f3136)
@@ -1304,7 +1304,7 @@ class Server(commands.Cog):
                 return await ctx.reply(embed=hacker1)
             else:
                 hacker = discord.Embed(
-                    title="Dilbar <3",
+                    title="Dilbar Support",
                     description=
                     f"<a:red_cross:1103371611983327322> No Autoresponder Found With The Name `{name}` In {ctx.guild.name}",
                     color=0x2f3136)
@@ -1314,7 +1314,7 @@ class Server(commands.Cog):
                 return await ctx.reply(embed=hacker)
         else:
             hacker2 = discord.Embed(
-                title="Dilbar <3",
+                title="Dilbar Support",
                 description=
                 f"<a:red_cross:1103371611983327322> There is no Autoresponder in {ctx.guild.name}",
                 color=0x2f3136)
@@ -1360,7 +1360,7 @@ class Server(commands.Cog):
                 with open("autoresponse.json", "w") as f:
                     json.dump(autoresponse, f, indent=4)
                 hacker1 = discord.Embed(
-                    title="Dilbar <3",
+                    title="Dilbar Support",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Edited Autoresponder in {ctx.guild.name} with the `{name}`",
                     color=0x2f3136)
@@ -1370,7 +1370,7 @@ class Server(commands.Cog):
                 return await ctx.send(embed=hacker1)
         else:
             hacker2 = discord.Embed(
-                title="Dilbar <3",
+                title="Dilbar Support",
                 description=
                 f"<a:red_cross:1103371611983327322> No Autoresponder Found With The Name `{name}` In {ctx.guild.name}",
                 color=0x2f3136)

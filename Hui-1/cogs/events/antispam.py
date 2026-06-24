@@ -38,7 +38,7 @@ class AntiSpam(Cog):
                 retry = bucket.update_rate_limit()
                 if retry:
                     now = discord.utils.utcnow()
-                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar <3 | Anti Spam")
+                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar Support | Anti Spam")
                     await send_v2(message.channel,
                         f"<a:green_tick:1103363669263405157> | Successfully muted {message.author.mention} for **spamming**.")
 
@@ -48,11 +48,11 @@ class AntiSpam(Cog):
                 now = discord.utils.utcnow()
                 if invite_matches:
                     await message.delete()
-                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar <3 | Anti Discord Invites")
+                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar Support | Anti Discord Invites")
                     await send_v2(message.channel,
                         f"<a:green_tick:1103363669263405157> | Muted {message.author.mention} for sending **Discord invites**.")
                 elif link_matches:
-                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar <3 | Anti Link")
+                    await message.author.timeout(now + datetime.timedelta(minutes=15), reason="Dilbar Support | Anti Link")
                     await send_v2(message.channel,
                         f"<a:green_tick:1103363669263405157> | Muted {message.author.mention} for sending **links**.")
         except Exception as error:

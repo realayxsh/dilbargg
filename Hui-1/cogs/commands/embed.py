@@ -20,7 +20,7 @@ def owner_role_check():
     return commands.check(predicate)
 
 
-class EmbedModal(discord.ui.Modal, title='Send Embed - Dilbar <3'):
+class EmbedModal(discord.ui.Modal, title='Send Embed - Dilbar Support'):
     embed_title = discord.ui.TextInput(
         label='Title (optional)',
         placeholder='Embed title here',

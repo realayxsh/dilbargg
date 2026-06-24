@@ -147,7 +147,7 @@ class Check:
         if ctx.author.voice:
             return True
         hacker5 = discord.Embed(
-            title="Dilbar <3",
+            title="Dilbar Support",
             description=
             f"<a:red_cross:1103371611983327322> {ctx.author.mention} You are not connected in a voice channel",
             color=0x2f3136)
@@ -166,7 +166,7 @@ class Check:
         if player.is_connected:
             return True
         hacker5 = discord.Embed(
-            title="Dilbar <3",
+            title="Dilbar Support",
             description=
             f"<a:red_cross:1103371611983327322> {ctx.author.mention} I'm not connected in a voice channel",
             color=0x2f3136)
@@ -185,7 +185,7 @@ class Check:
         if not player.is_connected:
             return True
         hacker5 = discord.Embed(
-            title="Dilbar <3",
+            title="Dilbar Support",
             description=
             f"<a:red_cross:1103371611983327322> I'm already connected in a voice channel",
             color=0x2f3136)
@@ -205,7 +205,7 @@ class Check:
                 and (ctx.author.id in ctx.author.voice.channel.voice_states)):
             return True
         hacker5 = discord.Embed(
-            title="Dilbar <3",
+            title="Dilbar Support",
             description=
             f"<a:red_cross:1103371611983327322> You are not connected in the same voice channel that the bot",
             color=0x2f3136)
@@ -223,7 +223,7 @@ class Check:
         if player.is_playing:
             return True
         hacker5 = discord.Embed(
-            title="Dilbar <3",
+            title="Dilbar Support",
             description=
             f"<a:red_cross:1103371611983327322> There is currently no song to replay",
             color=0x2f3136)

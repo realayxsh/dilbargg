@@ -55,7 +55,7 @@ class Guild(Cog):
 
         welcome_container = discord.ui.Container(
             discord.ui.TextDisplay(
-                f"## 👋 Hey, I am Dilbar <3!\n"
+                f"## 👋 Hey, I am Dilbar Support!\n"
                 "Thank you for adding me to your server.\n\n"
                 "**Help** — Sends the help page.\n"
                 "**Botinfo** — Shows info about the bot."
