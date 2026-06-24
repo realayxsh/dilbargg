@@ -5,15 +5,20 @@
 
   echo "=== Installing system packages ==="
   sudo apt-get update -y -q
-  sudo apt-get install -y -q python3 python3-pip git ffmpeg
+  sudo apt-get install -y -q python3.12 python3.12-venv python3.12-dev python3-pip git ffmpeg build-essential
 
   echo "=== Cloning bot ==="
   git clone https://github.com/realayxsh/dilbargg.git ~/dilbargg 2>/dev/null || (cd ~/dilbargg && git pull)
 
   BOT_DIR="$HOME/dilbargg/Hui-1"
 
+  echo "=== Creating Python 3.12 virtual environment ==="
+  python3.12 -m venv "$HOME/dilbargg/venv"
+  source "$HOME/dilbargg/venv/bin/activate"
+
   echo "=== Installing Python packages ==="
-  pip3 install --break-system-packages -q -r "$BOT_DIR/requirements.txt"
+  pip install --upgrade pip -q
+  pip install -q -r "$BOT_DIR/requirements.txt"
 
   echo ""
   if [ ! -f "$BOT_DIR/.env" ]; then
@@ -26,6 +31,8 @@
   fi
 
   echo "=== Starting bot service ==="
+  VENV_PYTHON="$HOME/dilbargg/venv/bin/python"
+
   sudo tee /etc/systemd/system/dilbar-bot.service > /dev/null << SVCEOF
   [Unit]
   Description=Dilbar Discord Bot
@@ -35,7 +42,7 @@
   Type=simple
   User=$USER
   WorkingDirectory=$BOT_DIR
-  ExecStart=/usr/bin/python3 main.py
+  ExecStart=$VENV_PYTHON main.py
   Restart=always
   RestartSec=10
   Environment=PYTHONUNBUFFERED=1
@@ -54,6 +61,6 @@
   echo " Bot is running!"
   echo " Logs   : sudo journalctl -u dilbar-bot -f"
   echo " Stop   : sudo systemctl stop dilbar-bot"
-  echo " Update : cd ~/dilbargg && git pull && sudo systemctl restart dilbar-bot"
+  echo " Update : cd ~/dilbargg && git pull && source ~/dilbargg/venv/bin/activate && pip install -q -r ~/dilbargg/Hui-1/requirements.txt && sudo systemctl restart dilbar-bot"
   echo "================================"
   
