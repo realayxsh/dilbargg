@@ -1,63 +1,59 @@
 #!/bin/bash
-  # Run this script on a fresh AWS EC2 Ubuntu 22.04 instance
-  # Usage: bash aws-setup.sh
-
+  # One-command AWS setup for Dilbar Discord Bot
+  # Run on fresh Ubuntu 22.04 EC2:  bash aws-setup.sh
   set -e
 
-  echo "=== Updating system ==="
-  sudo apt-get update -y && sudo apt-get upgrade -y
+  echo "=== Installing system packages ==="
+  sudo apt-get update -y -q
+  sudo apt-get install -y -q python3.11 python3-pip git ffmpeg
 
-  echo "=== Installing Python 3.11, pip, git, ffmpeg ==="
-  sudo apt-get install -y python3.11 python3.11-venv python3-pip git ffmpeg
-
-  echo "=== Cloning your bot ==="
-  git clone https://github.com/realayxsh/dilbargg.git ~/dilbargg
+  echo "=== Cloning bot ==="
+  git clone https://github.com/realayxsh/dilbargg.git ~/dilbargg 2>/dev/null || (cd ~/dilbargg && git pull)
 
   BOT_DIR="$HOME/dilbargg/Hui-1"
 
-  echo "=== Installing Python dependencies ==="
-  pip3 install --break-system-packages -r "$BOT_DIR/requirements.txt"
+  echo "=== Installing Python packages ==="
+  pip3 install --break-system-packages -q -r "$BOT_DIR/requirements.txt"
 
-  echo "=== Setting up environment file ==="
+  echo ""
   if [ ! -f "$BOT_DIR/.env" ]; then
-      cp "$BOT_DIR/.env.example" "$BOT_DIR/.env"
-      echo ""
-      echo ">>> IMPORTANT: Edit $BOT_DIR/.env and set your TOKEN:"
-      echo "    nano $BOT_DIR/.env"
-      echo ""
+      read -rp "Discord Bot Token: " BOT_TOKEN
+      read -rp "MongoDB URI:       " BOT_MONGO
+      printf "TOKEN=%s\nMONGO_URI=%s\n" "$BOT_TOKEN" "$BOT_MONGO" > "$BOT_DIR/.env"
+      echo ".env saved."
+  else
+      echo ".env already exists — skipping."
   fi
 
-  echo "=== Installing systemd service ==="
-  sudo tee /etc/systemd/system/hui-bot.service > /dev/null << EOF
+  echo "=== Starting bot service ==="
+  sudo tee /etc/systemd/system/dilbar-bot.service > /dev/null << SVCEOF
   [Unit]
-  Description=Hui Discord Bot
+  Description=Dilbar Discord Bot
   After=network.target
 
   [Service]
   Type=simple
-  User=\$USER
-  WorkingDirectory=\$BOT_DIR
+  User=$USER
+  WorkingDirectory=$BOT_DIR
   ExecStart=/usr/bin/python3 main.py
   Restart=always
   RestartSec=10
   Environment=PYTHONUNBUFFERED=1
-  EnvironmentFile=\$BOT_DIR/.env
+  EnvironmentFile=$BOT_DIR/.env
 
   [Install]
   WantedBy=multi-user.target
-  EOF
+  SVCEOF
 
   sudo systemctl daemon-reload
-  sudo systemctl enable hui-bot
-  sudo systemctl start hui-bot
+  sudo systemctl enable dilbar-bot
+  sudo systemctl restart dilbar-bot
 
   echo ""
-  echo "=== Done! ==="
-  echo "Check bot status : sudo systemctl status hui-bot"
-  echo "View live logs   : sudo journalctl -u hui-bot -f"
-  echo "Restart bot      : sudo systemctl restart hui-bot"
-  echo "Stop bot         : sudo systemctl stop hui-bot"
-  echo ""
-  echo "To update the bot later:"
-  echo "  cd ~/dilbargg && git pull && sudo systemctl restart hui-bot"
+  echo "================================"
+  echo " Bot is running!"
+  echo " Logs   : sudo journalctl -u dilbar-bot -f"
+  echo " Stop   : sudo systemctl stop dilbar-bot"
+  echo " Update : cd ~/dilbargg && git pull && sudo systemctl restart dilbar-bot"
+  echo "================================"
   

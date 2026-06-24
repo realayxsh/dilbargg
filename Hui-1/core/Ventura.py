@@ -44,7 +44,6 @@ class Ventura(commands.AutoShardedBot):
                                    activity=discord.Activity(
                                        type=discord.ActivityType.listening,
                                        name='-help'))
-        self.vc_keep_alive.start()
 
     @tasks.loop(seconds=30)
     async def vc_keep_alive(self):

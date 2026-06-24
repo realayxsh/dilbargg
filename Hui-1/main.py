@@ -1,3 +1,6 @@
+import v2compat
+v2compat.install()
+
 import os
 from core.Ventura import Ventura
 import asyncio, json

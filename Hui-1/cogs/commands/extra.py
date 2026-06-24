@@ -37,21 +37,19 @@ def datetime_to_seconds(thing: datetime.datetime):
         (current_time - thing.replace(tzinfo=None)).total_seconds())
 
 
-cluster = motor.motor_asyncio.AsyncIOMotorClient(
-    "mongodb+srv://RANDI:SHREEXD3110@cluster0.l8dzjae.mongodb.net/?retryWrites=true&w=majority"
-)
+_MONGO_URI = os.getenv("MONGO_URI", "")
 
-notedb = cluster["discord"]["note"]
+cluster = motor.motor_asyncio.AsyncIOMotorClient(_MONGO_URI) if _MONGO_URI else None
+
+notedb = cluster["discord"]["note"] if cluster else None
 
 
 class Utility(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.connection = mongodb.AsyncIOMotorClient(
-            "mongodb+srv://RANDI:SHREEXD3110@cluster0.l8dzjae.mongodb.net/?retryWrites=true&w=majority"
-        )
-        self.db = self.connection["Dilbar Support"]["servers"]
+        self.connection = mongodb.AsyncIOMotorClient(_MONGO_URI) if _MONGO_URI else None
+        self.db = self.connection["DilbarSupport"]["servers"] if self.connection else None
 
     @commands.group(name="banner")
     async def banner(self, ctx):
