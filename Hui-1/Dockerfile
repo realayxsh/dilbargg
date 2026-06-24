@@ -1,15 +1,15 @@
 FROM python:3.11-slim
 
-WORKDIR /app
+  WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    git \
-    ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+  RUN apt-get update && apt-get install -y \
+      git ffmpeg gcc \
+      && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+  COPY requirements.txt .
+  RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+  COPY . .
 
-CMD ["python", "main.py"]
+  CMD ["python", "main.py"]
+  
