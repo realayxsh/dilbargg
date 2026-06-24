@@ -1,0 +1,22 @@
+ubuntu@ip-172-31-21-113:~/dilbargg$ sudo systemctl daemon-reload && sudo systemctl enable hui-bot && sudo systemctl start hui-bot
+sudo journalctl -u hui-bot -f
+Created symlink '/etc/systemd/system/multi-user.target.wants/hui-bot.service' → '/etc/systemd/system/hui-bot.service'.
+Jun 24 08:44:07 ip-172-31-21-113 systemd[1]: Started hui-bot.service - Hui Discord Bot.
+Jun 24 08:44:07 ip-172-31-21-113 python3[4791]: /usr/bin/python3: can't open file '/home/ubuntu/dilbargg/main.py': [Errno 2] No such file or directory
+Jun 24 08:44:07 ip-172-31-21-113 systemd[1]: hui-bot.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Jun 24 08:44:07 ip-172-31-21-113 systemd[1]: hui-bot.service: Failed with result 'exit-code'.
+Jun 24 08:44:17 ip-172-31-21-113 systemd[1]: hui-bot.service: Scheduled restart job, restart counter is at 1.
+Jun 24 08:44:17 ip-172-31-21-113 systemd[1]: Started hui-bot.service - Hui Discord Bot.
+Jun 24 08:44:17 ip-172-31-21-113 python3[4803]: /usr/bin/python3: can't open file '/home/ubuntu/dilbargg/main.py': [Errno 2] No such file or directory
+Jun 24 08:44:17 ip-172-31-21-113 systemd[1]: hui-bot.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Jun 24 08:44:17 ip-172-31-21-113 systemd[1]: hui-bot.service: Failed with result 'exit-code'.
+Jun 24 08:44:27 ip-172-31-21-113 systemd[1]: hui-bot.service: Scheduled restart job, restart counter is at 2.
+Jun 24 08:44:27 ip-172-31-21-113 systemd[1]: Started hui-bot.service - Hui Discord Bot.
+Jun 24 08:44:27 ip-172-31-21-113 python3[4805]: /usr/bin/python3: can't open file '/home/ubuntu/dilbargg/main.py': [Errno 2] No such file or directory
+Jun 24 08:44:27 ip-172-31-21-113 systemd[1]: hui-bot.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Jun 24 08:44:27 ip-172-31-21-113 systemd[1]: hui-bot.service: Failed with result 'exit-code'.
+Jun 24 08:44:37 ip-172-31-21-113 systemd[1]: hui-bot.service: Scheduled restart job, restart counter is at 3.
+Jun 24 08:44:37 ip-172-31-21-113 systemd[1]: Started hui-bot.service - Hui Discord Bot.
+Jun 24 08:44:37 ip-172-31-21-113 python3[4807]: /usr/bin/python3: can't open file '/home/ubuntu/dilbargg/main.py': [Errno 2] No such file or directory
+Jun 24 08:44:37 ip-172-31-21-113 systemd[1]: hui-bot.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Jun 24 08:44:37 ip-172-31-21-113 systemd[1]: hui-bot.service: Failed with result 'exit-code'.
