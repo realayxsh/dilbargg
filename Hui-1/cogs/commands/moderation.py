@@ -1103,14 +1103,14 @@ Reason: `{entry.reason}`\n\n''')
                 overwrite=discord.PermissionOverwrite(send_messages=False),
                 reason=reason)
             await ctx.send(embed=discord.Embed(
-                title="VesTrol | Lockdown",
+                title="Dilbar <3 | Lockdown",
                 description=
                 "<a:green_tick:1103363669263405157> | Successfully locked **%s**"
                 % (channel.mention),
                 color=0x2f3136))
         except:
             await ctx.send(
-                embed=discord.Embed(title="VesTrol | Lockdown",
+                embed=discord.Embed(title="Dilbar <3 | Lockdown",
                                     description="Failed to lockdown **%s**" %
                                     (channel.mention),
                                     color=0x2f3136))
@@ -1137,14 +1137,14 @@ Reason: `{entry.reason}`\n\n''')
                 overwrite=discord.PermissionOverwrite(send_messages=True),
                 reason=reason)
             await ctx.send(embed=discord.Embed(
-                title="VesTrol | Unlockdown",
+                title="Dilbar <3 | Unlockdown",
                 description=
                 "<a:green_tick:1103363669263405157> | Successfully unlocked **%s**"
                 % (channel.mention),
                 color=0x2f3136))
         except:
             await ctx.send(
-                embed=discord.Embed(title="VesTrol | Unlockdown",
+                embed=discord.Embed(title="Dilbar <3 | Unlockdown",
                                     description="Failed to lock **`%s`**" %
                                     (channel.mention),
                                     color=0x2f3136))

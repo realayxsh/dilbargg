@@ -51,7 +51,7 @@ class Security(Cog):
         if ctx.author == ctx.guild.owner or ctx.author.top_role.position > ctx.guild.me.top_role.position:
             if data == "on":
                 embed = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"**{ctx.guild.name} Security Settings **<:role:1103972602294304778>\nOhh uh! looks like your server has already enabled security\n\nCurrent Status: <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n\n> To disable use `antinuke disable`",
                     color=0x2f3136)
@@ -61,7 +61,7 @@ class Security(Cog):
                 data = "on"
                 updateanti(ctx.guild.id, data)
                 embed2 = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"**{ctx.guild.name} Security Settings** <:role:1103972602294304778>\nAlso move my role to top of roles for me to work properly.\n\nPunishments:\n\n**Anti Bot:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Ban:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Kick:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>/n**Anti Prune:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Channel Create/Delete/Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Role Create/Delete/Update:** <:ventura_no:1096442460999274597><:ventura_yes:1096442570466414713>\n**Anti Webhook Create:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Emoji Create/Delete/Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Guild Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Community Spam:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Integration Create:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Everyone/Here/Role Mention:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Whitelisted Users:** {len(wled)}\n\n**Auto Recovery:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>",
                     color=0x2f3136)
@@ -98,7 +98,7 @@ class Security(Cog):
         if ctx.author == ctx.guild.owner or ctx.author.top_role.position > ctx.guild.me.top_role.position:
             if data == "off":
                 emb = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"**{ctx.guild.name} Security Settings **<:role:1103972602294304778>\nOhh NO! looks like your server has already disabled security\n\nCurrent Status: <:Disabled:1103972013963481138>\n\n> To enable use `antinuke enable`",
                     color=0x2f3136)
@@ -142,14 +142,14 @@ class Security(Cog):
         wlroles = ctx.guild.get_role(wlrole)
         if data == "off":
             emb = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"**{ctx.guild.name} Security Settings **<:role:1103972602294304778>\nOhh NO! looks like your server has already disabled security\n\nCurrent Status: <:Disabled:1103972013963481138>\n\n> To enable use `antinuke enable`",
                 color=0x2f3136)
             await ctx.reply(embed=emb, mention_author=False)
         elif data == "on":
             embed2 = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"**{ctx.guild.name} Security Settings** <:role:1103972602294304778>\nPunishments:\n**Anti Bot:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Ban:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Kick:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Prune:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Channel Create/Delete/Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Role Create/Delete/Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Webhook Create:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Emoji Create/Delete/Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Guild Update:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Community Spam:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Integration Create:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Everyone/Here/Role Mention:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Anti Vanity Steal:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>\n**Whitelisted Role:** <@&{wlrole}>\n**Whitelisted Users:** {len(wled)}\n\n**Auto Recovery:** <:ventura_no:1103715127385137224><:ventura_yes:1103715066035060766>",
                 color=0x2f3136)
@@ -179,7 +179,7 @@ class Security(Cog):
                 except:
                     pass
         hacker5 = discord.Embed(
-            title="Vestrol",
+            title="Dilbar <3",
             description=
             "<a:green_tick:1103363669263405157> | Successfully Deleted All Channels With Name Of `rules` and `moderator-only`",
             color=0x2f3136)
@@ -225,7 +225,7 @@ class Security(Cog):
                 data = getConfig(ctx.guild.id)
                 data["punishment"] = "kick"
                 hacker = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Changed Punishment To: **{kickOrBan}** For {ctx.guild.name}",
                     color=0x2f3136)
@@ -237,7 +237,7 @@ class Security(Cog):
                 data = getConfig(ctx.guild.id)
                 data["punishment"] = "ban"
                 hacker1 = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Changed Punishment To: **{kickOrBan}** For {ctx.guild.name}",
                     color=0x2f3136)
@@ -249,7 +249,7 @@ class Security(Cog):
                 data = getConfig(ctx.guild.id)
                 data["punishment"] = "none"
                 hacker3 = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Changed Punishment To: **{kickOrBan}** For {ctx.guild.name}",
                     color=0x2f3136)
@@ -258,7 +258,7 @@ class Security(Cog):
                 updateConfig(ctx.guild.id, data)
             else:
                 hacker6 = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     "Invalid Punishment Type\nValid Punishment Type(s) Are: Kick, Ban, None",
                     color=0x2f3136)
@@ -287,7 +287,7 @@ class Security(Cog):
         punish = data["punishment"]
         hacker5 = discord.Embed(
             color=0x2f3136,
-            title="Vestrol",
+            title="Dilbar <3",
             description=
             "Custom punishment of anti-nuke and automod in this server is: **{}**"
             .format(punish.title()))
@@ -315,7 +315,7 @@ class Security(Cog):
                     except:
                         pass
             hacker1 = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Deleted All Channels With The Name Of {channeltodelete}",
                 color=0x2f3136)
@@ -328,7 +328,7 @@ class Security(Cog):
                     except:
                         pass
             hacker2 = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Deleted All Channels With The Name Of {channeltodelete}",
                 color=0x2f3136)
@@ -363,7 +363,7 @@ class Security(Cog):
                     except:
                         pass
             hacker = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Deleted All Roles With The Name Of {roletodelete}",
                 color=0x2f3136)
@@ -376,7 +376,7 @@ class Security(Cog):
                     except:
                         pass
             hacker3 = discord.Embed(
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Deleted All Roles With The Name Of {roletodelete}",
                 color=0x2f3136)
@@ -424,7 +424,7 @@ class Security(Cog):
         if ctx.author == ctx.guild.owner or ctx.author.top_role.position > ctx.guild.me.top_role.position:
             if len(wled) == 15:
                 hacker = discord.Embed(
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"<a:cross:1096447109470896169> This server have already maximum number of whitelisted users (15)\nRemove one to add another :)",
                     color=0x2f3136)
@@ -432,7 +432,7 @@ class Security(Cog):
             else:
                 if str(user.id) in wled:
                     hacker1 = discord.Embed(
-                        title="Vestrol",
+                        title="Dilbar <3",
                         description=
                         f"<a:cross:1096447109470896169> That user is already in my whitelist.",
                         color=0x2f3136)
@@ -442,7 +442,7 @@ class Security(Cog):
                     updateConfig(ctx.guild.id, data)
                     hacker4 = discord.Embed(
                         color=0x2f3136,
-                        title="Vestrol",
+                        title="Dilbar <3",
                         description=
                         f"<a:green_tick:1103363669263405157> | Successfully Whitelisted {user.mention} For {ctx.guild.name}"
                     )
@@ -477,7 +477,7 @@ class Security(Cog):
                 updateConfig(ctx.guild.id, data)
                 hacker = discord.Embed(
                     color=0x2f3136,
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     f"<a:green_tick:1103363669263405157> | Successfully Unwhitelisted {user.mention} For {ctx.guild.name}"
                 )
@@ -485,7 +485,7 @@ class Security(Cog):
             else:
                 hacker2 = discord.Embed(
                     color=0x2f3136,
-                    title="Vestrol",
+                    title="Dilbar <3",
                     description=
                     "<a:cross:1096447109470896169> | That user is not in my whitelist."
                 )
@@ -514,7 +514,7 @@ class Security(Cog):
         if len(wled) == 0:
             hacker = discord.Embed(
                 color=0x2f3136,
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:cross:1096447109470896169> | There aren\'t any whitelised users for this server"
             )
@@ -554,7 +554,7 @@ class Security(Cog):
             updateConfig(ctx.guild.id, data)
             hacker = discord.Embed(
                 color=0x2f3136,
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | Successfully Cleared Whitelist Database For **{ctx.guild.name}**"
             )
@@ -584,7 +584,7 @@ class Security(Cog):
             updateConfig(ctx.guild.id, data)
             hacker4 = discord.Embed(
                 color=0x2f3136,
-                title="Vestrol",
+                title="Dilbar <3",
                 description=
                 f"<a:green_tick:1103363669263405157> | {role.mention} Has Been Added To Whitelisted Role For {ctx.guild.name}"
             )

@@ -120,7 +120,7 @@ class View(discord.ui.View):
         options.append(discord.SelectOption(label=label, emoji=emoji))
         embed = discord.Embed(title=f"{emoji} {label} Commands", color=0x2f3136)
         embed.set_footer(
-          text="Developed By VesTrol Development",
+          text="Developed By Dilbar <3 Development",
           icon_url=
           "https://cdn.discordapp.com/icons/1066734883449340015/18fd7390db5acf2f35635d51617e9e77.png?size=2048"
         )

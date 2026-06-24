@@ -51,7 +51,7 @@ class Utility(commands.Cog):
         self.connection = mongodb.AsyncIOMotorClient(
             "mongodb+srv://RANDI:SHREEXD3110@cluster0.l8dzjae.mongodb.net/?retryWrites=true&w=majority"
         )
-        self.db = self.connection["VesTrol"]["servers"]
+        self.db = self.connection["Dilbar <3"]["servers"]
 
     @commands.group(name="banner")
     async def banner(self, ctx):
@@ -124,7 +124,7 @@ class Utility(commands.Cog):
     @blacklist_check()
     @ignore_check()
     async def stats(self, ctx):
-        """Shows some usefull information about Vestrol"""
+        """Shows some usefull information about Dilbar <3"""
         serverCount = len(self.bot.guilds)
 
         total_memory = psutil.virtual_memory().total >> 20
@@ -173,7 +173,7 @@ class Utility(commands.Cog):
         embed.set_author(name=f"{self.bot.user.name} Stats",
                          icon_url=self.bot.user.display_avatar.url)
         embed.set_thumbnail(url=self.bot.user.display_avatar.url)
-        embed.set_footer(text='Thanks For Using VesTrol service',
+        embed.set_footer(text='Thanks For Using Dilbar <3 service',
                          icon_url=self.bot.user.display_avatar.url)
 
         await ctx.send(embed=embed)
@@ -184,7 +184,7 @@ class Utility(commands.Cog):
     async def invite(self, ctx: commands.Context):
         embed = discord.Embed(
             description=
-            "> • [Click Here To Invite VesTrol   To Your Server](https://discord.com/api/oauth2/authorize?client_id=1103575978770436116&permissions=8&scope=bot)\n> • [Click Here To Join My Support Server](https://discord.gg/HyWQdHjNPz)",
+            "> • [Click Here To Invite Dilbar <3   To Your Server](https://discord.com/api/oauth2/authorize?client_id=1103575978770436116&permissions=8&scope=bot)\n> • [Click Here To Join My Support Server](https://discord.gg/HyWQdHjNPz)",
             color=0x2f3136)
         embed.set_author(name=f"{ctx.author.name}",
                          icon_url=f"{ctx.author.avatar}")
@@ -200,7 +200,7 @@ class Utility(commands.Cog):
                     if g.member_count != None)
         channel = len(set(self.bot.get_all_channels()))
         embed = discord.Embed(color=0x2f3136,
-                              title="VesTrol Information",
+                              title="Dilbar <3 Information",
                               description=f"""
 **Bot's Mention:** {self.bot.user.mention}
 **Bot's Username:** {self.bot.user}
