@@ -1,11 +1,11 @@
 #!/bin/bash
   # One-command AWS setup for Dilbar Discord Bot
-  # Run on fresh Ubuntu 22.04 EC2:  bash aws-setup.sh
+  # Run on fresh Ubuntu EC2:  bash aws-setup.sh
   set -e
 
   echo "=== Installing system packages ==="
   sudo apt-get update -y -q
-  sudo apt-get install -y -q python3.11 python3-pip git ffmpeg
+  sudo apt-get install -y -q python3 python3-pip git ffmpeg
 
   echo "=== Cloning bot ==="
   git clone https://github.com/realayxsh/dilbargg.git ~/dilbargg 2>/dev/null || (cd ~/dilbargg && git pull)
