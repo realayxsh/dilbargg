@@ -5,7 +5,6 @@ from core import Ventura
 
 from .commands.help import Help
 from .commands.general import General
-from .commands.music import Music
 from .commands.moderation import Moderation
 from .commands.anti import Security
 from .commands.raidmode import Automod
@@ -48,7 +47,6 @@ from .events.voiceupdate import Vcroles2
 ##############cogs#############
 from .commands.anti1 import devansh1
 from .commands.general1 import devansh102
-from .commands.music1 import shree3110
 from .commands.raidmode1 import shree1227
 from .commands.welcome1 import devanshshree3110
 from .commands.vanityroles1 import devansh7
@@ -66,7 +64,6 @@ from .commands.encryption1 import devansh15
 async def setup(bot: Ventura):
   await bot.add_cog(Help(bot))
   await bot.add_cog(General(bot))
-  await bot.add_cog(Music(bot))
   await bot.add_cog(Moderation(bot))
   await bot.add_cog(Security(bot))
   await bot.add_cog(Automod(bot))
@@ -86,7 +83,6 @@ async def setup(bot: Ventura):
 
   await bot.add_cog(devansh1(bot))
   await bot.add_cog(devansh102(bot))
-  await bot.add_cog(shree3110(bot))
   await bot.add_cog(shree1227(bot))
   await bot.add_cog(devanshshree3110(bot))
   await bot.add_cog(devansh7(bot))

@@ -498,6 +498,48 @@ class Owner(commands.Cog):
 
 
 
+    @commands.group(name="adduser", invoke_without_command=True,
+                    help="Grant a member permission to use the bot.")
+    @commands.is_owner()
+    async def adduser(self, ctx, member: discord.Member = None):
+        if member is None:
+            return await ctx.reply("Please mention a member. Usage: `adduser @member`", mention_author=False)
+        from core.Ventura import OWNER_ROLE_ID
+        role = ctx.guild.get_role(OWNER_ROLE_ID)
+        if role is None:
+            return await ctx.reply("Authorized role not found in this server.", mention_author=False)
+        if role in member.roles:
+            embed = discord.Embed(
+                description=f"**{member}** already has bot access.",
+                color=0x2f3136)
+            return await ctx.reply(embed=embed, mention_author=False)
+        await member.add_roles(role, reason=f"Bot access granted by {ctx.author}")
+        embed = discord.Embed(
+            description=f"<a:green_tick:1103363669263405157> | **{member}** has been granted access to use the bot.",
+            color=0x2f3136)
+        await ctx.reply(embed=embed, mention_author=False)
+
+    @commands.group(name="removeuser", invoke_without_command=True,
+                    help="Revoke a member's permission to use the bot.")
+    @commands.is_owner()
+    async def removeuser(self, ctx, member: discord.Member = None):
+        if member is None:
+            return await ctx.reply("Please mention a member. Usage: `removeuser @member`", mention_author=False)
+        from core.Ventura import OWNER_ROLE_ID
+        role = ctx.guild.get_role(OWNER_ROLE_ID)
+        if role is None:
+            return await ctx.reply("Authorized role not found in this server.", mention_author=False)
+        if role not in member.roles:
+            embed = discord.Embed(
+                description=f"**{member}** does not have bot access.",
+                color=0x2f3136)
+            return await ctx.reply(embed=embed, mention_author=False)
+        await member.remove_roles(role, reason=f"Bot access revoked by {ctx.author}")
+        embed = discord.Embed(
+            description=f"<a:green_tick:1103363669263405157> | **{member}**'s bot access has been removed.",
+            color=0x2f3136)
+        await ctx.reply(embed=embed, mention_author=False)
+
     @commands.command()
     @commands.is_owner()
     async def globalban(self, ctx, *, user: discord.User = None):

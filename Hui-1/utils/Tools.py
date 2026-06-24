@@ -14,44 +14,14 @@ class NotVoter(commands.CheckFailure):
 
 
 async def check_voter(mem):
-    async with aiohttp.ClientSession(
-            headers=
-        {
-            "Authorization":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMTI2MjcwODgyMzIxNjUzNzYiLCJib3QiOnRydWUsImlhdCI6MTY3MDU4MzE3NH0.WULUKASz45RZduUMpTCqzHt0nPk3MqnpeJHF3YNgBo8"
-        }) as session:
-        async with session.get(
-                f"https://top.gg/api/bots/1012627088232165376/check?userId={str(mem)}"
-        ) as response:
-            vote = await response.json()
-            if vote["voted"] == 1 or mem in []:
-                response.close()
-                return "okay"
-            else:
-                response.close()
-                return "not okay"
+    return "okay"
 
 
 def is_voter():
-
     async def predicate(ctx: Context):
-        async with aiohttp.ClientSession(
-                headers=
-            {
-                "Authorization":
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMTI2MjcwODgyMzIxNjUzNzYiLCJib3QiOnRydWUsImlhdCI6MTY3MDU4MzE3NH0.WULUKASz45RZduUMpTCqzHt0nPk3MqnpeJHF3YNgBo8"
-            }) as session:
-            async with session.get(
-                    f"https://top.gg/api/bots/1012627088232165376/check?userId={str(ctx.author.id)}"
-            ) as response:
-                vote = await response.json()
-                if vote["voted"] == 1 or ctx.author.id in ctx.bot.owner_ids:
-                    response.close()
-                    return True
-                else:
-                    response.close()
-                    raise NotVoter()
-
+        if ctx.author.id in ctx.bot.owner_ids:
+            return True
+        raise NotVoter()
     return commands.check(predicate)
 
 

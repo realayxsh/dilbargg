@@ -15,15 +15,12 @@ from discord.ext import commands, tasks
 ALLOWED_GUILD_ID = 1359524927019028670
 # Only members with this role can use commands (except -afk which is open to everyone)
 OWNER_ROLE_ID = 1502876234705535088
+VC_CHANNEL_ID = 1502876369468657674
 
 
 class Ventura(commands.AutoShardedBot):
 
     def __init__(self, *arg, **kwargs):
-        self.topgg_headers = {
-            "Authorization":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMTI2MjcwODgyMzIxNjUzNzYiLCJib3QiOnRydWUsImlhdCI6MTY3MDU4MzE3NH0.WULUKASz45RZduUMpTCqzHt0nPk3MqnpeJHF3YNgBo8"
-        }
         intents = discord.Intents.all()
         intents.presences = False
         intents.members = False
@@ -47,16 +44,31 @@ class Ventura(commands.AutoShardedBot):
                                    activity=discord.Activity(
                                        type=discord.ActivityType.listening,
                                        name='-help'))
+        self.vc_keep_alive.start()
 
-        async with aiohttp.ClientSession(
-                headers=self.topgg_headers) as session:
-            async with session.post(
-                    "https://top.gg/api/bots/1012627088232165376/stats",
-                    json={
-                        "server_count": len(self.guilds),
-                        "shard_count": len(self.shards)
-                    }) as r:
-                print("Posted Data On Top GG", r.status)
+    @tasks.loop(seconds=30)
+    async def vc_keep_alive(self):
+        """Ensure the bot stays connected to the designated VC channel."""
+        channel = self.get_channel(VC_CHANNEL_ID)
+        if channel is None or not isinstance(channel, discord.VoiceChannel):
+            return
+        guild = channel.guild
+        vc = guild.voice_client
+        if vc is None:
+            try:
+                await channel.connect(self_deaf=True)
+                print(f"Joined VC: {channel.name}")
+            except Exception as e:
+                print(f"Failed to join VC: {e}")
+        elif vc.channel.id != VC_CHANNEL_ID:
+            try:
+                await vc.move_to(channel)
+            except Exception as e:
+                print(f"Failed to move to VC: {e}")
+
+    @vc_keep_alive.before_loop
+    async def before_vc_keep_alive(self):
+        await self.wait_until_ready()
 
     async def send_raw(self, channel_id: int, content: str,
                        **kwargs) -> typing.Optional[discord.Message]:
