@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
-  status: string;
+export interface BannerInput {
+  /** Base64-encoded data URI of the image (e.g. data:image/png;base64,...) */
+  imageDataUri: string;
 }

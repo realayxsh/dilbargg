@@ -1,15 +1,16 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Discord Bot Customizer API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: bot
+    description: Discord bot operations
 paths:
   /healthz:
     get:
@@ -24,6 +25,87 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /bot/profile:
+    get:
+      operationId: getBotProfile
+      tags: [bot]
+      summary: Get bot profile
+      description: Returns the current bot username, avatar URL, and banner URL
+      responses:
+        "200":
+          description: Bot profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BotProfile"
+        "500":
+          description: Error fetching profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /bot/avatar:
+    patch:
+      operationId: updateBotAvatar
+      tags: [bot]
+      summary: Update bot avatar
+      description: Updates the bot's profile picture (avatar) via Discord API. Accepts a base64 data URI.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AvatarInput"
+      responses:
+        "200":
+          description: Avatar updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BotProfile"
+        "400":
+          description: Invalid image data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Discord API error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /bot/banner:
+    patch:
+      operationId: updateBotBanner
+      tags: [bot]
+      summary: Update bot banner
+      description: Updates the bot's profile banner via Discord API. Accepts a base64 data URI. Requires a bot account with Nitro-like privileges (boosted server or verified/partnered apps).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BannerInput"
+      responses:
+        "200":
+          description: Banner updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BotProfile"
+        "400":
+          description: Invalid image data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Discord API error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +115,48 @@ components:
           type: string
       required:
         - status
-
+    BotProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+        bannerUrl:
+          type: ["string", "null"]
+        bannerColor:
+          type: ["string", "null"]
+      required:
+        - id
+        - username
+        - discriminator
+        - avatarUrl
+        - bannerUrl
+        - bannerColor
+    AvatarInput:
+      type: object
+      properties:
+        imageDataUri:
+          type: string
+          description: Base64-encoded data URI of the image (e.g. data:image/png;base64,...)
+      required:
+        - imageDataUri
+    BannerInput:
+      type: object
+      properties:
+        imageDataUri:
+          type: string
+          description: Base64-encoded data URI of the image (e.g. data:image/png;base64,...)
+      required:
+        - imageDataUri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
