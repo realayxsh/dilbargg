@@ -5,6 +5,8 @@ from discord import *
 from utils.config import OWNER_IDS, No_Prefix
 import json, discord
 import typing
+import aiohttp
+import base64
 from utils import Paginator, DescriptionEmbedPaginator, FieldPagePaginator, TextPaginator
 
 from typing import Optional
@@ -539,6 +541,84 @@ class Owner(commands.Cog):
             description=f"<a:green_tick:1103363669263405157> | **{member}**'s bot access has been removed.",
             color=0x2f3136)
         await ctx.reply(embed=embed, mention_author=False)
+
+    @commands.command(name="setavatar", help="Change the bot's profile picture. Attach an image or provide a URL.")
+    @commands.is_owner()
+    async def setavatar(self, ctx, url: str = None):
+        image_url = None
+        if ctx.message.attachments:
+            image_url = ctx.message.attachments[0].url
+        elif url:
+            image_url = url
+        else:
+            return await ctx.reply(
+                "Please attach an image or provide a URL.\nUsage: `-setavatar <url>` or attach an image.",
+                mention_author=False
+            )
+        async with aiohttp.ClientSession() as session:
+            async with session.get(image_url) as resp:
+                if resp.status != 200:
+                    return await ctx.reply("Failed to download the image. Check the URL and try again.", mention_author=False)
+                image_bytes = await resp.read()
+                content_type = resp.content_type or "image/png"
+        data_uri = f"data:{content_type};base64,{base64.b64encode(image_bytes).decode()}"
+        async with aiohttp.ClientSession() as session:
+            async with session.patch(
+                "https://discord.com/api/v10/users/@me",
+                headers={"Authorization": f"Bot {__import__('os').getenv('TOKEN')}",
+                         "Content-Type": "application/json"},
+                json={"avatar": data_uri}
+            ) as resp:
+                if resp.status == 200:
+                    embed = discord.Embed(
+                        description="<a:green_tick:1103363669263405157> | Bot avatar updated successfully!",
+                        color=0x2f3136)
+                    embed.set_thumbnail(url=image_url)
+                    await ctx.reply(embed=embed, mention_author=False)
+                else:
+                    error = await resp.text()
+                    await ctx.reply(f"Discord API error ({resp.status}): {error}", mention_author=False)
+
+    @commands.command(name="setbanner", help="Change the bot's profile banner. Attach an image or provide a URL.")
+    @commands.is_owner()
+    async def setbanner(self, ctx, url: str = None):
+        image_url = None
+        if ctx.message.attachments:
+            image_url = ctx.message.attachments[0].url
+        elif url:
+            image_url = url
+        else:
+            return await ctx.reply(
+                "Please attach an image or provide a URL.\nUsage: `-setbanner <url>` or attach an image.",
+                mention_author=False
+            )
+        async with aiohttp.ClientSession() as session:
+            async with session.get(image_url) as resp:
+                if resp.status != 200:
+                    return await ctx.reply("Failed to download the image. Check the URL and try again.", mention_author=False)
+                image_bytes = await resp.read()
+                content_type = resp.content_type or "image/png"
+        data_uri = f"data:{content_type};base64,{base64.b64encode(image_bytes).decode()}"
+        async with aiohttp.ClientSession() as session:
+            async with session.patch(
+                "https://discord.com/api/v10/users/@me",
+                headers={"Authorization": f"Bot {__import__('os').getenv('TOKEN')}",
+                         "Content-Type": "application/json"},
+                json={"banner": data_uri}
+            ) as resp:
+                if resp.status == 200:
+                    embed = discord.Embed(
+                        description="<a:green_tick:1103363669263405157> | Bot banner updated successfully!",
+                        color=0x2f3136)
+                    embed.set_image(url=image_url)
+                    await ctx.reply(embed=embed, mention_author=False)
+                else:
+                    error = await resp.text()
+                    await ctx.reply(
+                        f"Discord API error ({resp.status}): {error}\n\n"
+                        "-# Note: Banner updates require the bot to be verified or in a boosted server.",
+                        mention_author=False
+                    )
 
     @commands.command()
     @commands.is_owner()
